@@ -22,6 +22,12 @@
         hide-details
         v-model="invertZ">
       </v-switch>
+      <v-switch
+        class="mt-0 mb-4"
+        label="Use GCode Coordinates"
+        hide-details
+        v-model="useGcodeCoords">
+      </v-switch>
       <v-text-field
         filled
         label="Default Extrude Length"
@@ -103,6 +109,14 @@ export default class ToolHeadSettingsCard extends Mixins(UtilsMixin) {
 
   set defaultToolheadZSpeed (value: number) {
     this.$store.dispatch('config/saveGeneric', { key: 'uiSettings.general.defaultToolheadZSpeed', value })
+  }
+
+  get useGcodeCoords () {
+    return this.$store.state.config.uiSettings.general.useGcodeCoords
+  }
+
+  set useGcodeCoords (value: boolean) {
+    this.$store.dispatch('config/saveGeneric', { key: 'uiSettings.general.useGcodeCoords', value })
   }
 
   get invertX () {
